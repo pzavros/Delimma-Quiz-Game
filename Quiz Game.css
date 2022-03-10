@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 body {
     background-color: lightblue;
@@ -56,4 +57,64 @@ li{
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+=======
+
+body {
+    background-color: lightblue;
+    font-family: Helvetica;
+}
+
+#main {
+    width: 80%;
+    max-width: 950px;
+    border: 1px gray solid;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+.Question{
+    text-align: center;
+    width: 45%;
+    margin-top: 5%;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 200%;
+    border-radius: 25px;
+    margin-left: 30%;
+    margin-right: 30%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 2%;
+}
+.allAnswers{
+    text-align: center;
+    width: 100%;
+}
+ul{
+    list-style-type: none;
+    margin-top: 30%;
+}
+li{
+    margin-top: 15%;
+    padding: 0.5%;
+    margin-left:35%;
+    margin-right:35%;
+
+}
+.answerButton{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10% 20%;
+    text-align: center;
+    font-size: 200%;
+    border-radius:25px ;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.answerButton:hover {background-color: #3e8e41}
+.answerButton:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+>>>>>>> origin/main
 }
