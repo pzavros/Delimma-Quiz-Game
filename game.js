@@ -24,11 +24,11 @@ async function doList() {
     for(let i = 0; i < treasureHuntsArray.length; i++) {
 
         listHtml += // each treasure hunt item is shown with an individual DIV element
-            "<li>" +
-            "<b>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
+            "<ul>" +
+            "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
             "<i>" + treasureHuntsArray[i].description + "</i><br/>" +  // and the description in italics in the following line
             "<input   type = 'button' onclick='inputName()' value = 'Start'></input>" + // and the description in italics in the following line
-            "</li>";
+            "</li></ul>";
     }
     listHtml += "</ul>";
     // update the DOM with the newly created list
