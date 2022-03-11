@@ -27,7 +27,7 @@ async function doList() {
             "<ul>" +
             "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
             "<i>" + treasureHuntsArray[i].description + "</i><br/>" +  // and the description in italics in the following line
-            "<input   type = 'button' onclick='inputName()' value = 'Start' class="startBtn"></input>" + // and the description in italics in the following line
+            "<input   type = 'button' onclick='inputName()' value = 'Start'></input>" + // and the description in italics in the following line
             "</li></ul>";
     }
     listHtml += "</ul>";
