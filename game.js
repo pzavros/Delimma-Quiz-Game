@@ -18,6 +18,7 @@ async function doList() {
     let spinner = document.getElementById("loader");
     // .. and stop it (by hiding it)
 
+
     // access the "treasureHunts" array on the reply message
     let treasureHuntsArray = json.treasureHunts;
     let listHtml = "<ul>"; // dynamically form the HTML code to display the list of treasure hunts
@@ -27,7 +28,7 @@ async function doList() {
             "<ul>" +
             "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
             "<i>" + treasureHuntsArray[i].description + "</i><br/>" +  // and the description in italics in the following line
-            "<input   type = 'button' onclick='inputName()' value = 'Start'></input>" + // and the description in italics in the following line
+            "<input   type = 'button' onclick='start(\"" + treasureHuntsArray[i].uuid + "\")' value = 'Start'></input>" + // and the description in italics in the following line
             "</li></ul>";
     }
     listHtml += "</ul>";
@@ -47,6 +48,7 @@ doList();
 
 async function inputName(){
     document.getElementById("treasureHunts").innerHTML = "<div>Enter Name</div><br>" + "<input type='text' id='lname' name='lname' required>" + "<input   type = 'button' onclick='inputName1()' value = 'Start'></input>";
+
 }
 
 async function inputName1(){
@@ -61,4 +63,56 @@ async function select() {
     // todo add your own code ...
 
 }
+function setCookie(cname,cvalue,exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    let user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:","");
+        if (user != "" && user != null) {
+            setCookie("username", user, 30);
+        }
+    }
+    return user;
+}
+
+function start(treasureHuntID) {
+    const playerName = checkCookie();
+    console.log(playerName);
+    console.log(treasureHuntID);
+    const appName = "Team3App";
+
+    const URL = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + treasureHuntID;
+
+    console.log(URL);
+
+
+}
+
+function getParameter(parameterName){
+    let parameters = new URLSearchParams(window.location.search);
+    return parameters.get(parameterName);
+}
