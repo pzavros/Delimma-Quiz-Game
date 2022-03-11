@@ -23,7 +23,6 @@ async function doList() {
     let treasureHuntsArray = json.treasureHunts;
     let listHtml = "<ul>"; // dynamically form the HTML code to display the list of treasure hunts
     for(let i = 0; i < treasureHuntsArray.length; i++) {
-
         listHtml += // each treasure hunt item is shown with an individual DIV element
             "<ul>" +
             "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
@@ -94,6 +93,7 @@ function checkCookie() {
         user = prompt("Please enter your name:","");
         if (user != "" && user != null) {
             setCookie("username", user, 30);
+
         }
     }
     return user;
@@ -108,9 +108,43 @@ function start(treasureHuntID) {
     const URL = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + treasureHuntID;
 
     console.log(URL);
+    QuestionsID(URL);
 
 
 }
+
+async function QuestionsID(URL) {
+
+    // call the web service and await for the reply to come back and be converted to JSON
+    const reply = await fetch(URL);
+    const json = await reply.json();
+    console.log(json);
+if(json.status === "ERROR"){
+    console.log(json.status);
+}
+else{
+   setCookie("sessionID",json.session,30);
+   const myID =getCookie("sessionID");
+    console.log("Selected treasure hunt with UUID: " + myID);
+    const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
+    retrQuest(URLquest)
+}
+
+}
+
+async function retrQuest(URL){
+    const response = await fetch(URL);
+    const json = await response.json();
+    console.log(json);
+    console.log(json.questionText);
+    let question = json.questionText;
+    document.getElementById("hide").style.display = "inline";
+
+    document.getElementById("quest").innerHTML = question;
+
+}
+
+
 
 function getParameter(parameterName){
     let parameters = new URLSearchParams(window.location.search);
