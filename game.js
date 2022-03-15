@@ -48,11 +48,26 @@ doList();
 async function inputName(){
     document.getElementById("treasureHunts").innerHTML = "<div>Enter Name</div><br>" + "<input type='text' id='lname' name='lname' required>" + "<input   type = 'button' onclick='inputName1()' value = 'Start'></input>";
 
+    document.cookie = "name"+ document.getElementById('treasureHunts').value;
+    let date = new Date();
+    let milliseconds = 365 * 24 * 60 * 60 * 1000;
+     let expireDateTime = date.getTime() + milliseconds;
+
+      date.setTime(expireDateTime);
+     document.cookie = "username=" + document.getElementById('Start').value + "expires=" + date.toUTCString();
+
+}
+function setCookie(cookieName, cookieValue, expireDays) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expireDays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
 }
 
-async function inputName1(){
-    console.log("Selected treasure hunt with UUID: ");
-}
+//async function inputName1(){
+   // console.log("Selected treasure hunt with UUID: ");
+   // document.cookie = "name"+ document.getElementById('treasureHunts').value;
+//}
 
 
 async function select() {
@@ -112,6 +127,11 @@ function start(treasureHuntID) {
 
 
 }
+function getParameter(parameterName){
+    let parameters = new URLSearchParams(window.location.search);
+    return parameters.get(parameterName);
+}
+
 
 async function QuestionsID(URL) {
 
