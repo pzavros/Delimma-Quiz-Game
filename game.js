@@ -153,13 +153,12 @@ else{
 }
 
 async function retrQuest(URL){
+
     const response = await fetch(URL);
     const json = await response.json();
     console.log(json);
-    console.log(json.questionText);
     let question = json.questionText;
+    document.getElementById("treasureHunts").style.display = "none";
     document.getElementById("hide").style.display = "inline";
-
     document.getElementById("quest").innerHTML = question;
-
 }
