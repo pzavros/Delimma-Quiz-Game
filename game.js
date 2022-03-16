@@ -111,7 +111,6 @@ function start(treasureHuntID) {
 
     const URL = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + treasureHuntID;
 
-    console.log(URL);
     QuestionsID(URL);
 
 
@@ -121,14 +120,30 @@ async function QuestionsID(URL) {
     // call the web service and await for the reply to come back and be converted to JSON
     const reply = await fetch(URL);
     const json = await reply.json();
-    console.log(json);
+    const myID = getCookie("sessionID");
+    const myName = getCookie("username");
     if(json.status === "ERROR"){
         console.log(json.status);
 
+        let errorArray = json.errorMessages;
+
+        for(let i = 0; i < errorArray.length; i++) {
+            if(errorArray[i] === "The specified playerName: " + myName +", is already in use (try a different one)."){
+                alert("The specified playerName: " + myName +", is already in use (try a different one).");
+                deleteCookies("name");
+            }
+            if(errorArray[i] === "Missing or empty parameter:"){
+               alert("Missing or empty parameter:");
+            }
+            if(errorArray[i] === "Could not find a treasure hunt for the specified id: " + myID ){
+               alert("Could not find a treasure hunt for the specified id: " + myID );
+            }
+        }
     }
-    else{
+
+    if(json.status === "OK"){
         setCookie("sessionID",json.session,30);
-        const myID =getCookie("sessionID");
+        const myID = getCookie("sessionID");
         console.log("Selected treasure hunt with UUID: " + myID);
         const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
         retrQuest(URLquest,myID);
@@ -156,7 +171,7 @@ async function retrQuest(URL,myID){
         const myID =getCookie("sessionID");
         URLskip = "https://codecyprus.org/th/api/skip?session=" + myID;
         document.getElementById('skip').style.display = 'inline';
-        document.getElementById("skip").innerHTML = "<button id=\"skip\" onclick=\"skip(URLskip)\">Skip</button>";
+        document.getElementById("skip").innerHTML = "<button class='skip' id=\"skip\" onclick=\"skip(URLskip)\">Skip</button>";
     }
     if(json.canBeSkipped === false){
         document.getElementById('skip').style.display = 'none';
@@ -178,22 +193,24 @@ async function retrQuest(URL,myID){
         document.getElementById("answers").innerHTML = "<input type='text' id='intAnswer'>";
     }
     if(json.completed=== true){
-        document.getElementById("answers").innerHTML = "a";
         var URLleaderboard = "https://codecyprus.org/th/api/leaderboard?session=" + myID;
-        console.log(URLleaderboard);
         leaderboard(URLleaderboard);
     }
 
     const URLscore = "https://codecyprus.org/th/api/score?session=" + myID;
     score(URLscore);
 
+    document.getElementById('restart').innerHTML = "restart";
+
 }
 
 async function leaderboard(URL) {
     const response = await fetch(URL);
     const json = await response.json();
-    var leaderboard = json;
-    document.getElementById('leader').innerHTML = leaderboard;
+
+    document.getElementById("leaderboard1").innerHTML = "Leaderboard";
+    document.getElementById("leaderboard1").style.marginBottom = "-20%";
+
 
     let leaderboardArray = json.leaderboard;
     let listHtml = "<ul>"; // dynamically form the HTML code to display the list of treasure hunts
@@ -231,11 +248,16 @@ async function answer(URL,answer){
     retrQuest(URLquest, myID);
 }
 
-function deleteCookies(){
+function deleteCookies(check){
     let user = getCookie("username");
     console.log(user);
     document.cookie = "username="+ user +"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    alert("To start new game select desired Treasure Hunt");
+    if(check === "restart"){}
+    if(check === "name"){}
+    if(check === ""){
+        alert("To start new game select desired Treasure Hunt");
+    }
+
 }
 
 async function skip(URL){
@@ -250,6 +272,10 @@ async function skip(URL){
 async function score(URL){
     const response = await fetch(URL);
     const json = await response.json();
-    document.getElementById('score').innerHTML = json.score;
+    document.getElementById('score').innerHTML = "Score: " + json.score;
 }
 
+function restart(){
+    location.reload();
+    deleteCookies("restart");
+}

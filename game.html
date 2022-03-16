@@ -14,7 +14,7 @@
   <br>
   <button class="cookies" id="cookies" onclick="deleteCookies()">New Game</button>
 </header>
-
+<div id="leaderboard1"></div>
 <div id="leader">
 <div id="treasureHunts" class="availableTreasureHunts">
 </div>
@@ -22,17 +22,18 @@
 
 
 <div id="hide">
-  <div class="container mt-sm-5 my-1">
-    <div class="question ml-sm-5 pl-sm-5 pt-2">
-      <b><div class="py-2 h5" id="quest"></div></b>
+  <div class="container ">
+    <div class="question">
+      <b><div id="quest"></div></b>
       <div class="answers" id="answers">
 
       </div>
 
     </div>
-    <div class="d-flex align-items-center pt-3">
-      <div class="ml-auto mr-sm-5"> <button class="btn btn-success" id="skip">Skip</button> </div>
+    <div>
+      <div id="skip"></div>
       <div id="score"></div>
+      <button onclick="restart()" id="restart"></button>
     </div>
   </div>
 </div>

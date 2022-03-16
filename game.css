@@ -66,8 +66,26 @@ ul{
 table, th, td {
     color: white;
     border:1px solid white;
+    margin-top: 3%;
+
 }
 table{
     width:100%;
     border-collapse: collapse;
+}
+
+#leaderboard1{
+    text-align:center;
+    margin-top:5% ;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    max-width: 130px;
+    border-radius: 5px;
+    margin-left: 2%;
+    font-size: 20px;
+}
+
+#leader {
+    margin-left: 2%;
+    margin-right: 2%;
 }
