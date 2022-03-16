@@ -15,9 +15,9 @@ body {
 .button{
     background-color: #4CAF50; /* Green */
     color: white;
-    padding: 2% 9%;
+    padding: 1% 5%;
     text-align: center;
-    font-size: 200%;
+    font-size: 150%;
     border-radius:25px ;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     text-decoration: none;
@@ -25,6 +25,7 @@ body {
 .header{
     text-align:center;
     margin-top:5% ;
+
 }
 .availableTreasureHunts{
 
@@ -32,65 +33,41 @@ body {
 .trBorder{
     background-color: #4CAF50; /* Green */
     color: white;
-    padding: 2% 9%;
+    padding: 5px 5px;
     text-align: center;
     font-size: 100%;
     border-radius:25px ;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    margin-top:15%;
-    margin-right: 5%;
-    margin-left: -20%;
+    margin-top: -22%;
+    margin-right: 25%;
+    margin-left: 25%;
+
 }
 ul{
     list-style: none;
 }
 
-
-.Question{
-    text-align: center;
-    width: 45%;
-    margin-top: 5%;
-    background-color: #4CAF50;
+.cookies{
+    font-weight: bold;
+    text-align:center;
+    margin-top:1% ;
+    background-color: red; /* Green */
     color: white;
-    font-size: 200%;
-    border-radius: 25px;
-    margin-left: 30%;
-    margin-right: 30%;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    padding: 2%;
-}
-.allAnswers{
-    text-align: center;
-    width: 100%;
-}
-ul{
-    list-style-type: none;
-    margin-top: 30%;
-}
-li{
-    margin-top: 15%;
-    padding: 0.5%;
-    margin-left:35%;
-    margin-right:35%;
-
-}
-.answerButton{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10% 20%;
-    text-align: center;
-    font-size: 200%;
+    padding: 5px 5px;
+    font-size: 70%;
     border-radius:25px ;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.answerButton:hover {background-color: #3e8e41}
-.answerButton:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
 
-#hide{
-    display: none;
+.leaderboard{
+    color:white;
+    margin-top: -10%;
+}
+table, th, td {
+    color: white;
+    border:1px solid white;
+}
+table{
+    width:100%;
+    border-collapse: collapse;
 }

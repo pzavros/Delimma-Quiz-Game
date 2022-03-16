@@ -27,7 +27,7 @@ async function doList() {
             "<ul>" +
             "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
             "<i>" + treasureHuntsArray[i].description + "</i><br/>" +  // and the description in italics in the following line
-            "<input   type = 'button' onclick='start(\"" + treasureHuntsArray[i].uuid + "\")' value = 'Start'></input>" + // and the description in italics in the following line
+            "<input   type = 'button'  onclick='start(\"" + treasureHuntsArray[i].uuid + "\")' value = 'Start'></input>" +
             "</li></ul>";
     }
     listHtml += "</ul>";
@@ -45,29 +45,16 @@ doList();
 
 /**"<a href=\"https://codecyprus.org/th/api/start?player=stefanos&app='" + treasureHuntsArray[i].name +"'&treasure-hunt-id='" + treasureHuntsArray[i].uuid + "\')\">Start</a>" */
 
-async function inputName(){
+
+
+
+
+/**async function inputName(){
     document.getElementById("treasureHunts").innerHTML = "<div>Enter Name</div><br>" + "<input type='text' id='lname' name='lname' required>" + "<input   type = 'button' onclick='inputName1()' value = 'Start'></input>";
-
-    document.cookie = "name"+ document.getElementById('treasureHunts').value;
-    let date = new Date();
-    let milliseconds = 365 * 24 * 60 * 60 * 1000;
-     let expireDateTime = date.getTime() + milliseconds;
-
-      date.setTime(expireDateTime);
-     document.cookie = "username=" + document.getElementById('Start').value + "expires=" + date.toUTCString();
-
 }
-function setCookie(cookieName, cookieValue, expireDays) {
-    let date = new Date();
-    date.setTime(date.getTime() + (expireDays * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + date.toUTCString();
-    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
-}
-
-//async function inputName1(){
-   // console.log("Selected treasure hunt with UUID: ");
-   // document.cookie = "name"+ document.getElementById('treasureHunts').value;
-//}
+ async function inputName1(){
+    console.log("Selected treasure hunt with UUID: ");
+}**/
 
 
 async function select() {
@@ -77,6 +64,7 @@ async function select() {
     // todo add your own code ...
 
 }
+
 function setCookie(cname,cvalue,exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -104,6 +92,7 @@ function checkCookie() {
     let user = getCookie("username");
     if (user != "") {
         alert("Welcome again " + user);
+        setCookie("username", user, 30);
     } else {
         user = prompt("Please enter your name:","");
         if (user != "" && user != null) {
@@ -127,38 +116,140 @@ function start(treasureHuntID) {
 
 
 }
-function getParameter(parameterName){
-    let parameters = new URLSearchParams(window.location.search);
-    return parameters.get(parameterName);
-}
-
 
 async function QuestionsID(URL) {
-
     // call the web service and await for the reply to come back and be converted to JSON
     const reply = await fetch(URL);
     const json = await reply.json();
     console.log(json);
-if(json.status === "ERROR"){
-    console.log(json.status);
-}
-else{
-   setCookie("sessionID",json.session,30);
-   const myID =getCookie("sessionID");
-    console.log("Selected treasure hunt with UUID: " + myID);
-    const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
-    retrQuest(URLquest)
-}
+    if(json.status === "ERROR"){
+        console.log(json.status);
+
+    }
+    else{
+        setCookie("sessionID",json.session,30);
+        const myID =getCookie("sessionID");
+        console.log("Selected treasure hunt with UUID: " + myID);
+        const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
+        retrQuest(URLquest,myID);
+
+    }
 
 }
 
-async function retrQuest(URL){
-
+async function retrQuest(URL,myID){
     const response = await fetch(URL);
     const json = await response.json();
     console.log(json);
     let question = json.questionText;
     document.getElementById("treasureHunts").style.display = "none";
+    document.getElementById('cookies').style.display = 'none';
     document.getElementById("hide").style.display = "inline";
+
+
+
     document.getElementById("quest").innerHTML = question;
+    const URLans = "https://codecyprus.org/th/api/answer?session=" + myID;
+
+    console.log(json.canBeSkipped);
+    if(json.canBeSkipped === true) {
+        const myID =getCookie("sessionID");
+        URLskip = "https://codecyprus.org/th/api/skip?session=" + myID;
+        document.getElementById('skip').style.display = 'inline';
+        document.getElementById("skip").innerHTML = "<button id=\"skip\" onclick=\"skip(URLskip)\">Skip</button>";
+    }
+    if(json.canBeSkipped === false){
+        document.getElementById('skip').style.display = 'none';
+    }
+
+    if(json.questionType === "INTEGER") {
+        document.getElementById("answers").innerHTML = "<input type='number' onblur='submitAnswers(\"" + URLans +"\" )' id='intAnswer'>" + "<br>" ;
+    }
+    if(json.questionType === "BOOLEAN") {
+        document.getElementById("answers").innerHTML = "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='TRUE'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='FALSE'>"
+    }
+    if(json.questionType === "NUMERIC") {
+        document.getElementById("answers").innerHTML = "<input type='number' id='intAnswer'>";
+    }
+    if(json.questionType === "MCQ") {
+        document.getElementById("answers").innerHTML = "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='A'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='B'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='C'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='D'>"
+    }
+    if(json.questionType === "TEXT") {
+        document.getElementById("answers").innerHTML = "<input type='text' id='intAnswer'>";
+    }
+    if(json.completed=== true){
+        document.getElementById("answers").innerHTML = "a";
+        var URLleaderboard = "https://codecyprus.org/th/api/leaderboard?session=" + myID;
+        console.log(URLleaderboard);
+        leaderboard(URLleaderboard);
+    }
+
+    const URLscore = "https://codecyprus.org/th/api/score?session=" + myID;
+    score(URLscore);
+
 }
+
+async function leaderboard(URL) {
+    const response = await fetch(URL);
+    const json = await response.json();
+    var leaderboard = json;
+    document.getElementById('leader').innerHTML = leaderboard;
+
+    let leaderboardArray = json.leaderboard;
+    let listHtml = "<ul>"; // dynamically form the HTML code to display the list of treasure hunts
+    for(let i = 0; i < leaderboardArray.length; i++) {
+        listHtml += // each treasure hunt item is shown with an individual DIV element
+            "<table>" +
+            "<tr>" + "<td>" + leaderboardArray[i].player  + "</td>" + // the treasure hunt name is shown in bold...
+            "<td>" + leaderboardArray[i].score  + "</td>" +  // and the description in italics in the following line
+            "</tr>" +
+            "</table>";
+    }
+    listHtml += "</ul>";
+    document.getElementById("leader").innerHTML = listHtml;
+
+}
+
+function submitAnswers(URLans){
+    var intAns = document.getElementById('intAnswer').value;
+    console.log(intAns);
+    answer(URLans,intAns);
+
+}
+
+function getVal(){
+    const val = document.querySelector('input').value;
+    console.log(val);
+}
+
+async function answer(URL,answer){
+    const response = await fetch(URL + "&answer=" + answer);
+    const json = await response.json();
+    console.log(json);
+    const myID =getCookie("sessionID");
+    const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
+    retrQuest(URLquest, myID);
+}
+
+function deleteCookies(){
+    let user = getCookie("username");
+    console.log(user);
+    document.cookie = "username="+ user +"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    alert("To start new game select desired Treasure Hunt");
+}
+
+async function skip(URL){
+    const response = await fetch(URL);
+    const json = await response.json();
+    const myID =getCookie("sessionID");
+    const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
+    retrQuest(URLquest, myID);
+
+}
+
+async function score(URL){
+    const response = await fetch(URL);
+    const json = await response.json();
+    document.getElementById('score').innerHTML = json.score;
+}
+
