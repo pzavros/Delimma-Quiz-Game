@@ -254,7 +254,7 @@ function deleteCookies(check){
     document.cookie = "username="+ user +"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     if(check === "restart"){}
     if(check === "name"){}
-    if(check === ""){
+    if(check === "newgame"){
         alert("To start new game select desired Treasure Hunt");
     }
 
