@@ -51,10 +51,8 @@ doList();
 
 /**async function inputName(){
     document.getElementById("treasureHunts").innerHTML = "<div>Enter Name</div><br>" + "<input type='text' id='lname' name='lname' required>" + "<input   type = 'button' onclick='inputName1()' value = 'Start'></input>";
-
 }
-
-async function inputName1(){
+ async function inputName1(){
     console.log("Selected treasure hunt with UUID: ");
 }**/
 
@@ -120,7 +118,6 @@ function start(treasureHuntID) {
 }
 
 async function QuestionsID(URL) {
-
     // call the web service and await for the reply to come back and be converted to JSON
     const reply = await fetch(URL);
     const json = await reply.json();
@@ -146,6 +143,7 @@ async function retrQuest(URL,myID){
     console.log(json);
     let question = json.questionText;
     document.getElementById("treasureHunts").style.display = "none";
+    document.getElementById('cookies').style.display = 'none';
     document.getElementById("hide").style.display = "inline";
 
 
@@ -153,31 +151,69 @@ async function retrQuest(URL,myID){
     document.getElementById("quest").innerHTML = question;
     const URLans = "https://codecyprus.org/th/api/answer?session=" + myID;
 
-    answer(URLans);
     console.log(json.canBeSkipped);
     if(json.canBeSkipped === true) {
         const myID =getCookie("sessionID");
         URLskip = "https://codecyprus.org/th/api/skip?session=" + myID;
+        document.getElementById('skip').style.display = 'inline';
         document.getElementById("skip").innerHTML = "<button id=\"skip\" onclick=\"skip(URLskip)\">Skip</button>";
+    }
+    if(json.canBeSkipped === false){
+        document.getElementById('skip').style.display = 'none';
+    }
+
+    if(json.questionType === "INTEGER") {
+        document.getElementById("answers").innerHTML = "<input type='number' onblur='submitAnswers(\"" + URLans +"\" )' id='intAnswer'>" + "<br>" ;
+    }
+    if(json.questionType === "BOOLEAN") {
+        document.getElementById("answers").innerHTML = "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='TRUE'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='FALSE'>"
+    }
+    if(json.questionType === "NUMERIC") {
+        document.getElementById("answers").innerHTML = "<input type='number' id='intAnswer'>";
+    }
+    if(json.questionType === "MCQ") {
+        document.getElementById("answers").innerHTML = "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='A'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='B'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='C'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='D'>"
+    }
+    if(json.questionType === "TEXT") {
+        document.getElementById("answers").innerHTML = "<input type='text' id='intAnswer'>";
     }
 
 }
 
-async function answer(URL){
-    const response = await fetch(URL);
-    const json = await response.json();
-    console.log(json);
+function submitAnswers(URLans){
+    var intAns = document.getElementById('intAnswer').value;
+    console.log(intAns);
+    answer(URLans,intAns);
+
 }
 
-function answer1(){
+function getVal(){
+    const val = document.querySelector('input').value;
+    console.log(val);
+}
 
+async function answer(URL,answer){
+    const response = await fetch(URL + "&answer=" + answer);
+    const json = await response.json();
+    console.log(json);
+    const myID =getCookie("sessionID");
+    const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
+    retrQuest(URLquest, myID);
+}
+
+function deleteCookies(){
+    let user = getCookie("username");
+    console.log(user);
+    document.cookie = "username="+ user +"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 async function skip(URL){
     const response = await fetch(URL);
     const json = await response.json();
+    const myID =getCookie("sessionID");
+    const URLquest = "https://codecyprus.org/th/api/question?session=" + myID;
+    retrQuest(URLquest, myID);
 
-    console.log(json);
 }
 
 function getParameter(parameterName){
