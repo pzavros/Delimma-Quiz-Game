@@ -197,10 +197,21 @@ async function retrQuest(URL,myID){
         leaderboard(URLleaderboard);
     }
 
+    if(json.requiresLocation === true){
+        getLocation();
+    }
+
     const URLscore = "https://codecyprus.org/th/api/score?session=" + myID;
     score(URLscore);
 
     document.getElementById('restart').innerHTML = "restart";
+
+}
+
+function submitAnswers(URLans){
+    var intAns = document.getElementById('intAnswer').value;
+    console.log(intAns);
+    answer(URLans,intAns);
 
 }
 
@@ -227,17 +238,6 @@ async function leaderboard(URL) {
 
 }
 
-function submitAnswers(URLans){
-    var intAns = document.getElementById('intAnswer').value;
-    console.log(intAns);
-    answer(URLans,intAns);
-
-}
-
-function getVal(){
-    const val = document.querySelector('input').value;
-    console.log(val);
-}
 
 async function answer(URL,answer){
     const response = await fetch(URL + "&answer=" + answer);
@@ -278,4 +278,39 @@ async function score(URL){
 function restart(){
     location.reload();
     deleteCookies("restart");
+}
+
+
+/**Geolocation**/
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+    const myID = getCookie("sessionID");
+    var URLgeoLocation = "https://codecyprus.org/th/api/location?session="+myID;
+    console.log(URLgeoLocation);
+    geoLocation(URLgeoLocation,lat,long);
+}
+
+async function geoLocation( URLgeoLocation,latitude,longitude){
+    var URL =  URLgeoLocation + "&latitude=" + latitude + "&longitude=" + longitude;
+    console.log(URL);
+    const response = await fetch(URL);
+    const json = await response.json();
+    console.log(json);
+    if(json.status === "OK"){
+        alert("Location Retrieved");
+    }
+    if(json.status === "ERROR"){
+        alert("ERROR: Location NOT Retrieved");
+    }
 }
