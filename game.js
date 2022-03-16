@@ -193,7 +193,7 @@ async function retrQuest(URL,myID){
         document.getElementById("answers").innerHTML = "<input type='text' id='intAnswer'>";
     }
     if(json.completed=== true){
-        var URLleaderboard = "https://codecyprus.org/th/api/leaderboard?session=" + myID;
+        var URLleaderboard = "https://codecyprus.org/th/api/leaderboard?sorted&limit=20&session=" + myID;
         leaderboard(URLleaderboard);
     }
 
