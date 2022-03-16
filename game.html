@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="game.css">
-    <link rel="stylesheet" href="Quiz%20Game.css">
-    <script type="text/javascript" src="game.js"></script>
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="game.css">
+  <link rel="stylesheet" href="Quiz%20Game.css">
+  <script type="text/javascript" src="game.js"></script>
+  <title>Title</title>
 </head>
 <body >
 <header class="header">
-    <button onclick="window.location.href='index.html'" class="button"  id="btn">Home</button>
+  <button onclick="window.location.href='index.html'" class="button"  id="btn">Home</button>
+  <br>
+  <button class="cookies" id="cookies" onclick="deleteCookies('newgame')">New Game</button>
 </header>
-
+<div id="leaderboard1"></div>
+<div id="leader">
 <div id="treasureHunts" class="availableTreasureHunts">
 </div>
-<button id="cookies" onclick="deleteCookies()">button</button>
 
 
 
 <div id="hide">
-    <div class="container mt-sm-5 my-1">
-        <div class="question ml-sm-5 pl-sm-5 pt-2">
-            <b><div class="py-2 h5" id="quest"></div></b>
-            <div class="answers" id="answers">
+  <div class="container ">
+    <div class="question">
+      <b><div id="quest"></div></b>
+      <div class="answers" id="answers">
 
-            </div>
+      </div>
 
-        </div>
-        <div class="d-flex align-items-center pt-3">
-            <div class="ml-auto mr-sm-5"> <button class="btn btn-success" id="skip">Skip</button> </div>
-        </div>
     </div>
-
+    <div>
+      <div id="skip"></div>
+      <div id="score"></div>
+      <button onclick="restart()" id="restart"></button>
+    </div>
+  </div>
+</div>
 </div>
 </body>
 </html>
