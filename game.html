@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="game.css">
   <link rel="stylesheet" href="Quiz%20Game.css">
   <script type="text/javascript" src="game.js"></script>
+  <script src="js/instascan.min.js"></script>
   <title>Title</title>
 </head>
 <body >
@@ -14,14 +15,12 @@
   <br>
   <button class="cookies" id="cookies" onclick="deleteCookies('newgame')">New Game</button>
 </header>
-<div id="leaderboard1"></div>
-<div id="leader">
-<div id="treasureHunts" class="availableTreasureHunts">
-</div>
 
 
+<div id="treasureHunts" class="availableTreasureHunts"></div>
 
 <div id="hide">
+
   <div class="container ">
     <div class="question">
       <b><div id="quest"></div></b>
@@ -34,9 +33,20 @@
       <div id="skip"></div>
       <div id="score"></div>
       <button onclick="restart()" id="restart"></button>
+      <br>
+      <button onclick="qr()" >QR Scanner</button>
+      <br>
+      <div id="qr"></div>
     </div>
   </div>
 </div>
+
+<div id="leaderboard1">
+  <br>
+  <button onclick="restart()" id="leaderboardRestart">New Game</button>
 </div>
+<div id="leader"></div>
+
+
 </body>
 </html>

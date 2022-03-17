@@ -219,21 +219,25 @@ async function leaderboard(URL) {
     const response = await fetch(URL);
     const json = await response.json();
 
-    document.getElementById("leaderboard1").innerHTML = "Leaderboard";
-    document.getElementById("leaderboard1").style.marginBottom = "-20%";
+    document.getElementById("hide").style.display = "none";
+    document.getElementById("leaderboardRestart").style.display = "inline";
+    document.getElementById("leader").style.marginTop = "-5%";
+
 
 
     let leaderboardArray = json.leaderboard;
-    let listHtml = "<ul>"; // dynamically form the HTML code to display the list of treasure hunts
+    let listHtml = "<table>" + "<tr>"+
+        "<th>Name</th> "+
+        "<th>Score</th> "+
+        "</tr>";// dynamically form the HTML code to display the list of treasure hunts
     for(let i = 0; i < leaderboardArray.length; i++) {
         listHtml += // each treasure hunt item is shown with an individual DIV element
-            "<table>" +
-            "<tr>" + "<td>" + leaderboardArray[i].player  + "</td>" + // the treasure hunt name is shown in bold...
-            "<td>" + leaderboardArray[i].score  + "</td>" +  // and the description in italics in the following line
-            "</tr>" +
-            "</table>";
+            "<tr>"+
+            "<td>" + leaderboardArray[i].player + "</td>"+
+            "<td>" + leaderboardArray[i].score + "</td>"+
+            "</tr>"
     }
-    listHtml += "</ul>";
+    listHtml += "</table>";
     document.getElementById("leader").innerHTML = listHtml;
 
 }
@@ -314,3 +318,46 @@ async function geoLocation( URLgeoLocation,latitude,longitude){
         alert("ERROR: Location NOT Retrieved");
     }
 }
+
+function qr(){
+    document.getElementById("qr").innerHTML = "<video id='preview'></video>" +
+        "<div style='margin: 20px; padding: 20px; background-color: black; color: white; textalign: center;' id='content'></div>"
+}
+
+/** ------------ QR CODE -------------**/
+var opts = {
+
+    continuous: true,
+
+    video: document.getElementById('preview'),
+
+    mirror: false,
+
+    captureImage: false,
+
+    backgroundScan: true,
+
+    refractoryPeriod: 5000,
+
+    scanPeriod: 1
+};
+
+
+var scanner = new Instascan.Scanner(opts);
+
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        scanner.start(cameras[1]);
+    } else {
+        console.error('No cameras found.');
+        alert("No cameras found.");
+    }
+}).catch(function (e) {
+    console.error(e);
+});
+
+scanner.addListener('scan', function (content) {
+    console.log(content);
+    document.getElementById("content").innerHTML = content;
+});
+/** -------------------------------------------------------------------**/

@@ -64,28 +64,28 @@ ul{
     margin-top: -10%;
 }
 table, th, td {
-    color: white;
-    border:1px solid white;
-    margin-top: 3%;
-
+    color: black;
+    margin-top: 10%;
+    border: 1px solid #A9A9A9;
+    background-color: #dddddd;
+    text-align: left;
+    padding: 8px;
 }
 table{
-    width:100%;
+    width:50%;
     border-collapse: collapse;
 }
 
-#leaderboard1{
-    text-align:center;
-    margin-top:5% ;
-    background-color: #4CAF50; /* Green */
-    color: white;
-    max-width: 130px;
-    border-radius: 5px;
-    margin-left: 2%;
-    font-size: 20px;
+#leader {
+    margin-left: 20%;
+    margin-right: -30%;
+    margin-top: 25%;
+    margin-bottom: 100px;
 }
 
-#leader {
-    margin-left: 2%;
-    margin-right: 2%;
+#leaderboardRestart{
+    display: none;
+    margin-top: 2%;
+    margin-left: 20%;
+    font-size: 100%;
 }
