@@ -292,47 +292,106 @@ footer{
     background-color: #000;
     padding: 60px 0;
 }
-.contact-area{
-    padding-top: 100px;
-    padding-bottom: 100px;
+* {
+    padding: 0;
+    margin: 0;
 }
-ul.contact-area{
-    font-size: 18px;
-    width: 100%;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
+
+body {
+    background-color: #12172b;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    margin: 20px 40px;
+    color: white;
+}
+
+.heading {
+    font-size: 60px;
+    color: white;
+}
+
+.heading span {
+    font-style: italic;
+    font-size: 30px;
+}
+
+.pictures {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.contact-area li{
-    padding: 0 30px;
-    flex-basis: 33%;
-    text-align: center;
-}
-@media(max-width: 1000px){
-    .contact-area li{
-        flex-basis: 100%;
-        margin-bottom: 65px;
-    }
-    .contact-area li:last-child{
-        margin-bottom: 0;
-    }
-    .contact-area li p{
-        padding: 0;
-
-    }
+    justify-content: space-around;
+    margin: 20px 80px;
 }
 
-.contact-area-title{
-    text-transform: uppercase;
-    font-size: 50px;
-    margin-bottom: 5%;
+.picture {
+    flex-basis: 260px;
 }
 
-.image{
+.picture .picture-img {
+    height: 260px;
+    width: 260px;
     border-radius: 50%;
-    margin-top:5%;
+    filter: grayscale(100%);
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.picture:hover .picture-img {
+    filter: grayscale(0);
+}
+
+.name {
+    margin-top: 30px;
+    font-size: 35px;
+}
+
+.picture h5 {
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: 3px;
+    color: #ccc;
+}
+
+.picture p {
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 1150px) {
+    .pictures {
+        flex-direction: column;
+    }
+
+    .picture {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .picture p {
+        text-align: center;
+        margin: 20px 60px 80px 60px;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .heading {
+        font-size: 40px;
+        color: white;
+        text-align: center;
+    }
+
+    .heading span {
+        font-size: 15px;
+    }
+
+    .pictures {
+        margin: 20px 0;
+    }
+
+    .picture p {
+        margin: 20px 10px 80px 10px;
+    }
 }
