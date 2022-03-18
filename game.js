@@ -321,9 +321,43 @@ async function geoLocation( URLgeoLocation,latitude,longitude){
 
 function qr(){
     document.getElementById("qr").innerHTML = "<video id='preview'></video>" +
-        "<div style='margin: 20px; padding: 20px; background-color: black; color: white; textalign: center;' id='content'></div>";
+        "<div style='margin: 20px; padding: 20px; background-color: black; color: white; textalign: center;' id='content'></div>"
 }
 
 /** ------------ QR CODE -------------**/
+var opts = {
 
+    continuous: true,
+
+    video: document.getElementById('preview'),
+
+    mirror: false,
+
+    captureImage: false,
+
+    backgroundScan: true,
+
+    refractoryPeriod: 5000,
+
+    scanPeriod: 1
+};
+
+
+var scanner = new Instascan.Scanner(opts);
+
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        scanner.start(cameras[1]);
+    } else {
+        console.error('No cameras found.');
+        alert("No cameras found.");
+    }
+}).catch(function (e) {
+    alert(e);
+});
+
+scanner.addListener('scan', function (content) {
+    console.log(content);
+    document.getElementById("content").innerHTML = content;
+});
 /** -------------------------------------------------------------------**/
