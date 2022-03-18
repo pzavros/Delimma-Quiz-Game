@@ -89,3 +89,9 @@ table{
     margin-left: 20%;
     font-size: 100%;
 }
+#preview{
+    margin: 3px;
+    border-width: 5px;
+    padding:3px;
+
+}
