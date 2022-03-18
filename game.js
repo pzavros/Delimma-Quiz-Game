@@ -321,7 +321,9 @@ async function geoLocation( URLgeoLocation,latitude,longitude){
 
 function qr(){
     document.getElementById("qr").innerHTML = "<video id='preview'></video>" +
-        "<div style='margin: 20px; padding: 20px; background-color: black; color: white; textalign: center;' id='content'></div>"
+        "<div style='margin: 20px; padding: 20px; background-color: black; color: white; textalign: center;' id='content'></div>";
+
+
 }
 
 /** ------------ QR CODE -------------**/
@@ -357,7 +359,6 @@ let opts = {
     scanPeriod: 1
 };
 
-function QrCode(){
     let cameraIndex = 0; //The index of the selected camera.
     let cameraArray; //An array of all available cameras.
 
@@ -382,7 +383,8 @@ function QrCode(){
     }).catch(function (e) {
         alert(e);
     });
-}
+
+
 
 function switchCamera() {
     //Cycle through the available cameras:
