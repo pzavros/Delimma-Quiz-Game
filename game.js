@@ -353,7 +353,7 @@ Instascan.Camera.getCameras().then(function (cameras) {
         alert("No cameras found.");
     }
 }).catch(function (e) {
-    console.error(e);
+    alert(e);
 });
 
 scanner.addListener('scan', function (content) {
