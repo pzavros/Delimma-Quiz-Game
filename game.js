@@ -373,6 +373,7 @@ scanner.addListener('scan', function (content) {
 });
 
 
+
 //Initialize the cameras:
 Instascan.Camera.getCameras().then(function (cameras) {
     cameraArray = cameras; //Set the value for cameraArray, so that we can know what cameras we can use later
@@ -386,7 +387,6 @@ Instascan.Camera.getCameras().then(function (cameras) {
 }).catch(function (e) {
     alert(e);
 });
-
 
 
 function switchCamera() {
