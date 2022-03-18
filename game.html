@@ -35,11 +35,20 @@
       <button onclick="restart()" id="restart"></button>
       <br>
       <button onclick="qr()" >QR Scanner</button>
+
       <br>
-      <div id="qr"></div>
+      <div id="qr">
+        <video id='preview' style="visibility: hidden; border: white 1px solid"></video>
+        <div style="margin: 20px; padding: 20px; background-color: black; color: white; textalign: center;" id="content"></div>
+
+      </div>
     </div>
+    <button onclick="switchCamera()">Switch Camera</button>
   </div>
 </div>
+<script>
+
+</script>
 
 <div id="leaderboard1">
   <br>
