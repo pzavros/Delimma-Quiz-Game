@@ -362,7 +362,7 @@ let opts = {
     scanPeriod: 1
 };
 
-let cameraIndex = 1; //The index of the selected camera.
+let cameraIndex = 0; //The index of the selected camera.
 let cameraArray; //An array of all available cameras.
 
 //The scanner listener - when a code is scanned, do something:
@@ -395,7 +395,7 @@ function switchCamera() {
         cameraIndex++;
     }
     else {
-        cameraIndex = 1;
+        cameraIndex = 0;
     }
 
     //Find the next camera to use:
