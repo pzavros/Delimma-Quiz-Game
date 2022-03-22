@@ -34,7 +34,7 @@
       <div id="score"></div>
       <button onclick="restart()" id="restart"></button>
       <br>
-      <button onclick="qr()" >QR Scanner</button>
+      <button onclick="qr()" class="switchCamerabtn">QR Scanner</button>
 
       <br>
       <div id="qr">
@@ -43,17 +43,17 @@
         </div>
       </div>
     </div>
-    <button onclick="switchCamera()">Switch Camera</button>
+    <button onclick="switchCamera()"class="switchCamerabtn">Switch Camera</button>
   </div>
 </div>
 <script>
 
 </script>
-
 <div id="leaderboard1">
   <br>
   <button onclick="restart()" id="leaderboardRestart">New Game</button>
 </div>
+<h3 class="topPlayers" id="topPlayers" style="visibility: hidden">Top 20 players: </h3>
 <div id="leader"></div>
 
 

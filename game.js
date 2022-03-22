@@ -27,7 +27,7 @@ async function doList() {
             "<ul>" +
             "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
             "<i>" + treasureHuntsArray[i].description + "</i><br/>" +  // and the description in italics in the following line
-            "<input   type = 'button'  onclick='start(\"" + treasureHuntsArray[i].uuid + "\")' value = 'Start'></input>" +
+            "<input   type = 'button' id='startGamebtn' onclick='start(\"" + treasureHuntsArray[i].uuid + "\")' value = 'Start'></input>" +
             "</li></ul>";
     }
     listHtml += "</ul>";
@@ -166,6 +166,10 @@ async function retrQuest(URL,myID){
     document.getElementById("quest").innerHTML = question;
     const URLans = "https://codecyprus.org/th/api/answer?session=" + myID;
 
+    for(x=0;x<json;x++){
+        console.log(x);
+    }
+
     console.log(json.canBeSkipped);
     if(json.canBeSkipped === true) {
         const myID =getCookie("sessionID");
@@ -181,13 +185,13 @@ async function retrQuest(URL,myID){
         document.getElementById("answers").innerHTML = "<input type='number' onblur='submitAnswers(\"" + URLans +"\" )' id='intAnswer'>" + "<br>" ;
     }
     if(json.questionType === "BOOLEAN") {
-        document.getElementById("answers").innerHTML = "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='TRUE'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='FALSE'>"
+        document.getElementById("answers").innerHTML = "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='TRUE'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='FALSE'>"
     }
     if(json.questionType === "NUMERIC") {
         document.getElementById("answers").innerHTML = "<input type='number' id='intAnswer'>";
     }
     if(json.questionType === "MCQ") {
-        document.getElementById("answers").innerHTML = "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='A'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='B'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='C'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' value='D'>"
+        document.getElementById("answers").innerHTML = "<div class='multipleChoice'> <input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='A'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='B'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='C'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='D'> <div/>"
     }
     if(json.questionType === "TEXT") {
         document.getElementById("answers").innerHTML = "<input type='text' id='intAnswer'>";
@@ -223,7 +227,14 @@ async function leaderboard(URL) {
     document.getElementById("leaderboardRestart").style.display = "inline";
     document.getElementById("leader").style.marginTop = "-5%";
 
+    let topPlayers = document.getElementById("topPlayers");
 
+    if (topPlayers.style.visibility === "hidden") {
+        topPlayers.style.visibility = "visible";
+    }
+    else {
+        topPlayers.style.visibility = "hidden";
+    }
 
     let leaderboardArray = json.leaderboard;
     let listHtml = "<table>" + "<tr>"+

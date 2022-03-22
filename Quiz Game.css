@@ -75,7 +75,7 @@ body {
 .skip {
     font-size: 96%;
     background-color: #4CAF50;
-    color: white;
+    color: black;
     border-radius: 10px;
     padding: 3px 3px;
     font-family: sans-serif;
@@ -89,7 +89,7 @@ body {
     text-align: center;
     font-size: 96%;
     background-color: #4CAF50;
-    color: white;
+    color: black;
     border-radius: 10px;
     padding: 3px 3px;
     font-family: sans-serif;
@@ -102,11 +102,46 @@ body {
     text-align: center;
     font-size: 96%;
     background-color: #4CAF50;
-    color: white;
+    color: black;
     border-radius: 10px;
     padding: 3px 3px;
     font-family: sans-serif;
     max-width: 60px;
     margin-top: 2%;
     margin-bottom: 2%;
+}
+#quest{
+    text-align: center;
+    font-size: 96%;
+    background-color: #4CAF50;
+    color: black;
+    border-radius: 10px;
+    padding: 3px 3px;
+    font-family: sans-serif;
+    max-width: 225px;
+    margin-top: 2%;
+    margin-bottom: 8%;
+}
+.intAnswer{
+    text-align: center;
+    font-size: 96%;
+    background-color: #4CAF50;
+    color: black;
+    border-radius: 10px;
+    padding: 10px 10px;
+    font-family: sans-serif;
+    max-width: 225px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.switchCamerabtn{
+    text-align: center;
+    font-size: 95%;
+    background-color: #4CAF50;
+    color: black;
+    border-radius: 10px;
+    padding: 10px 0px;
+    font-family: sans-serif;
+    max-width: 110px;
+    margin-top: 15%;
 }
