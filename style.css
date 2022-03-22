@@ -298,18 +298,18 @@ footer{
 }
 
 body {
-    background-color: #12172b;
+    background-color: darkgray;
     font-family: "Poppins", sans-serif;
 }
 
 .container {
     margin: 20px 40px;
-    color: white;
+    color: black;
 }
 
 .heading {
-    font-size: 60px;
-    color: white;
+    font-size: 45px;
+    color: black;
 }
 
 .heading span {
@@ -349,7 +349,7 @@ body {
     font-size: 18px;
     font-weight: 100;
     letter-spacing: 3px;
-    color: #ccc;
+    color: white;
 }
 
 .picture p {
