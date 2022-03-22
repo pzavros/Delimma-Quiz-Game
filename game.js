@@ -22,13 +22,17 @@ async function doList() {
     // access the "treasureHunts" array on the reply message
     let treasureHuntsArray = json.treasureHunts;
     let listHtml = "<ul>"; // dynamically form the HTML code to display the list of treasure hunts
+    let time = new Date().getTime(); //gets current time
     for(let i = 0; i < treasureHuntsArray.length; i++) {
-        listHtml += // each treasure hunt item is shown with an individual DIV element
-            "<ul>" +
-            "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
-            "<i>" + treasureHuntsArray[i].description + "</i><br/>" +  // and the description in italics in the following line
-            "<input   type = 'button' id='startGamebtn' onclick='start(\"" + treasureHuntsArray[i].uuid + "\")' value = 'Start'></input>" +
-            "</li></ul>";
+        let startOn = treasureHuntsArray[i].startsOn;
+        if (time + 300000 >= startOn) {
+            listHtml += // each treasure hunt item is shown with an individual DIV element
+                "<ul>" +
+                "<b><li class='trBorder'>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
+                "<i>" + treasureHuntsArray[i].description + "</i><br/>" +  // and the description in italics in the following line
+                "<input   type = 'button' id='startGamebtn' onclick='start(\"" + treasureHuntsArray[i].uuid + "\")' value = 'Start'></input>" +
+                "</li></ul>";
+        }
     }
     listHtml += "</ul>";
     // update the DOM with the newly created list
@@ -133,10 +137,10 @@ async function QuestionsID(URL) {
                 deleteCookies("name");
             }
             if(errorArray[i] === "Missing or empty parameter:"){
-               alert("Missing or empty parameter:");
+                alert("Missing or empty parameter:");
             }
             if(errorArray[i] === "Could not find a treasure hunt for the specified id: " + myID ){
-               alert("Could not find a treasure hunt for the specified id: " + myID );
+                alert("Could not find a treasure hunt for the specified id: " + myID );
             }
         }
     }
@@ -415,4 +419,3 @@ function switchCamera() {
     //Start the new selected camera:
     scanner.start(camera);
 }
-/** -------------------------------------------------------------------**/

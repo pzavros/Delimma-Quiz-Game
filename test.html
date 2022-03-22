@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css"/>
+</head>
+<body>
+<a class="homebtn" href="index.html">Home</a>
+<h1>Test Page</h1>
+<p>A testing page for our Treasure Hunt</p>
+
+<hr/>
+<br>
+<button class="testbtn" onclick="list()">List</button>
+<button class="testbtn" onclick="start()">Start</button>
+<button class="testbtn" onclick="questionShow()">Questions</button>
+<button class="testbtn" onclick="answerShow()">Answers</button>
+<button class="testbtn" onclick="scoreShow()">Score</button>
+<button class="testbtn" onclick="showLeaderboard()">Leaderboard</button>
+<br>
+<br>
+<hr/>
+<h2>Testing Options</h2>
+<br>
+<div id="questionHide">
+    <input id="completedQ" type="text" placeholder="completed (BOOL)"/>
+    <input id="qType" type="text" placeholder="type (MCQ, BOOLEAN, INTEGER, TEXT)"/>
+    <input id="skipped" type="text" placeholder="can be skipped (BOOL)"/>
+    <input id="location" type="text" placeholder="location (BOOL)"/>
+    <button class="testbtn" onclick="doQuestions(document.getElementById('completedQ').value, document.getElementById('qType').value, document.getElementById('skipped').value, document.getElementById('location').value)">TEST</button>
+</div>
+
+<div id="answerHide">
+    <input id="correctAns" type="text" placeholder="correct (BOOL)"/>
+    <input id="completedAns" type="text" placeholder="completed (BOOL)"/>
+    <input id="expired" type="text" placeholder="expired (BOOL)"/>
+    <button class="testbtn" onclick="doAnswer(document.getElementById('correctAns').value, document.getElementById('completedAns').value, document.getElementById('expired').value)">TEST</button>
+</div>
+
+<div id="scoreHide">
+    <input id="score" type="text" placeholder="score (INTEGER)"/>
+    <input id="completedScore" type="text" placeholder="completed (BOOL)"/>
+    <input id="finishedScore" type="text" placeholder="finished (BOOL)"/>
+    <input id="errorScore" type="text" placeholder="error (BOOL)"/>
+    <button class="testbtn" onclick="doScore(document.getElementById('score').value, document.getElementById('completedScore').value, document.getElementById('finishedScore').value, document.getElementById('errorScore').value)">TEST</button>
+</div>
+
+<div id="leaderboardHide">
+    <input id="sortedLead" type="text" placeholder="sorted (BOOL)"/>
+    <input id="hasPrize" type="text" placeholder="has Prize? (BOOL)"/>
+    <input id="sizeLead" type="text" placeholder="sizeOf Leaderboard (INT)"/>
+    <button class="testbtn" onclick="doLeaderboard(document.getElementById('sortedLead').value, document.getElementById('hasPrize').value, document.getElementById('sizeLead').value)">TEST</button>
+</div>
+
+<div id="testing-options">
+
+</div>
+<br>
+<br>
+<hr/>
+
+<h2>Testing</h2>
+
+<table id="test-results-table">
+
+</table>
+
+
+
+
+
+<hr/>
+
+
+</body>
+</html>
+<script type="text/javascript" src="test.js"></script>

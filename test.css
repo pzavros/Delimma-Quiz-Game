@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+    border: 1px solid blue
+}
+
+th, td {
+    border-bottom: 1px solid gray;
+    text-align: left;
+}
+
+td{
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right: 1px solid gray;
+}
+.testbtn:hover{
+    background-color: lightblue;
+}
+
+.homebtn{
+    display: block;
+    height: 25px;
+    color:#333;
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.homebtn:hover {
+    color:red;
+}
+#questionHide{
+    display: none;
+}
+#answerHide{
+    display: none;
+}
+#scoreHide{
+    display: none;
+}
+#leaderboardHide{
+    display: none;
+}
