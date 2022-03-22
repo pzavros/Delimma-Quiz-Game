@@ -354,7 +354,7 @@ let opts = {
     // When the camera is active, this element will have the "active" CSS class, otherwise,
     // it will have the "inactive" class. By default, an invisible element will be created to
     // host the video.
-    video: document.getElementById('content'),
+    video: document.getElementById('preview'),
 
     // Whether to horizontally mirror the video preview. This is helpful when trying to
     // scan a QR code with a user-facing camera. Default true.
@@ -392,7 +392,7 @@ scanner.addListener('scan', function (content) {
 //Initialize the cameras:
 Instascan.Camera.getCameras().then(function (cameras) {
     cameraArray = cameras; //Set the value for cameraArray, so that we can know what cameras we can use later
-    if (cameras.length > 0) {
+    if (cameras.length >= 0) {
         cameraIndex = 0; //Set the first camera as the default
         alert(cameraIndex);
         scanner.start(cameras[0]); //Start the default camera
