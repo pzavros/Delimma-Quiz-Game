@@ -198,7 +198,7 @@ async function retrQuest(URL,myID){
         document.getElementById("answers").innerHTML = "<div class='multipleChoice'> <input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='A'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='B'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='C'>" + "<br>" + "<input type='button' onclick='submitAnswers(\"" + URLans +"\" )' id='intAnswer' class='intAnswer' value='D'> <div/>"
     }
     if(json.questionType === "TEXT") {
-        document.getElementById("answers").innerHTML = "<input type='text' id='intAnswer'>";
+        document.getElementById("answers").innerHTML = "<input type='' id='intAnswer'>";
     }
     if(json.completed=== true){
         var URLleaderboard = "https://codecyprus.org/th/api/leaderboard?sorted&limit=20&session=" + myID;
