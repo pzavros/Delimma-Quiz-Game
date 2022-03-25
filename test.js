@@ -24,8 +24,8 @@ async function doList(listNum) {
 
         "<tr>\n" +
         "    <td>List</td>" +
-        "    <td>" + treasureHuntsArray[i].name + "<br>" + treasureHuntsArray[i].description + "<br>" + treasureHuntsArray[i].uuid + "</td>" +
-        "    <td> idk </td>" +
+        "    <td>" + treasureHuntsArray[i].name + "<br>" + treasureHuntsArray[i].description + "<br>" + treasureHuntsArray[i].ownerEmail + "<br>" + treasureHuntsArray[i].secretCode + "<br>" + treasureHuntsArray[i].salt + "<br>" + treasureHuntsArray[i].visibility + "<br>" + treasureHuntsArray[i].startsOn + "<br>" + treasureHuntsArray[i].endsOn + "<br>" + treasureHuntsArray[i].maxDuration + "<br>" + treasureHuntsArray[i].shuffled + "<br>" + treasureHuntsArray[i].requiresAuthentication + "<br>" + treasureHuntsArray[i].emailResults + "<br>" + treasureHuntsArray[i].hasPrize +"</td>" +
+            "   <td>" + treasureHuntsArray[i].name + "<br>" + treasureHuntsArray[i].description + "<br>" + treasureHuntsArray[i].ownerEmail + "<br>" + treasureHuntsArray[i].secretCode + "<br>" + treasureHuntsArray[i].salt + "<br>" + treasureHuntsArray[i].visibility + "<br>" + treasureHuntsArray[i].startsOn + "<br>" + treasureHuntsArray[i].endsOn + "<br>" + treasureHuntsArray[i].maxDuration + "<br>" + treasureHuntsArray[i].shuffled + "<br>" + treasureHuntsArray[i].requiresAuthentication + "<br>" + treasureHuntsArray[i].emailResults + "<br>" + treasureHuntsArray[i].hasPrize +"</td>" +
         "    <td>Passed</td>" +
         "</td>";
 
