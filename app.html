@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="game.css">
+  <link rel="stylesheet" href="Quiz%20Game.css">
+  <script type="text/javascript" src="js/instascan.min.js"></script>
+
+  <title>Treasure Hunt</title>
+</head>
+<body >
+<header class="header">
+  <button onclick="window.location.href='index.html'" class="button"  id="btn">Home</button>
+  <br>
+  <button class="cookies" id="cookies" onclick="deleteCookies('newgame')">New Game</button>
+</header>
+
+
+<div id="treasureHunts" class="availableTreasureHunts"></div>
+
+<div id="hide">
+
+  <div class="container ">
+    <div class="question">
+      <b><div id="quest"></div></b>
+      <div class="answers" id="answers">
+
+      </div>
+
+    </div>
+    <div>
+      <div id="skip"></div>
+      <div id="score"></div>
+      <button onclick="restart()" id="restart"></button>
+      <br>
+      <button onclick="qr()" class="switchCamerabtn">QR Scanner</button>
+
+      <br>
+      <div id="qr">
+        <div  id="content" style=" margin: 20px; padding: 20px; background-color: black; color: white; textalign: center; border: white 3px solid;">
+          <video id='preview' style="visibility: hidden;"></video>
+        </div>
+      </div>
+    </div>
+    <button onclick="switchCamera()"class="switchCamerabtn">Switch Camera</button>
+  </div>
+</div>
+<script>
+
+</script>
+<div id="leaderboard1">
+  <br>
+  <button onclick="restart()" id="leaderboardRestart">New Game</button>
+</div>
+<h3 class="topPlayers" id="topPlayers" style="visibility: hidden">Top 20 players: </h3>
+<div id="leader"></div>
+
+
+</body>
+
+</html>
+<script type="text/javascript" src="game.js"></script>
